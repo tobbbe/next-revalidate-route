@@ -12,7 +12,7 @@
     "build": "tsc",
     "prepublishOnly": "npm run build"
   },
-  "repository": "https://github.com/tobbbe/authur",
+  "repository": "https://github.com/tobbbe/next-revalidate-route",
   "author": "Tobias Ekman",
   "devDependencies": {
     "@types/node": "20.4.7",
