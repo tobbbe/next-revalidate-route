@@ -9,11 +9,9 @@ Tired of writing Next.js revalidate endpoint every time? Use next-reavalidate-ro
 3. Create the handler
 
 ```js
-import { revalidateTag, revalidatePath } from 'next/cache'
-import { NextRequest, NextResponse } from 'next/server'
 import { nextRevalidateRoute } from 'next-revalidate-route'
 
-export const runtime = 'edge'
+export const runtime = 'edge' // optional
 
 export async function GET(req: NextRequest) {
   return nextRevalidateRoute(req, 'your_secret')
