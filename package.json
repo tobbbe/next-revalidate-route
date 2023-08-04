@@ -1,0 +1,28 @@
+{
+  "name": "next-revalidate-route",
+  "version": "1.0.1",
+  "description": "Helper that creates a Nextjs route handler that can be used to revalidatePath's and revalidateTag's with query parameters. Optionally protect with a secret.",
+  "keywords": [
+    "nextjs",
+    "next"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": "https://github.com/tobbbe/authur",
+  "author": "Tobias Ekman",
+  "devDependencies": {
+    "@types/node": "20.4.7",
+    "@types/react": "18.2.17",
+    "@types/react-dom": "18.0.5",
+    "typescript": "5.1.6"
+  },
+  "dependencies": {
+    "next": ">=13.0.0",
+    "react": ">=18.2.0",
+    "react-dom": ">=18.2.0"
+  }
+}
