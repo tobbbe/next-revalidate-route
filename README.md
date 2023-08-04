@@ -11,8 +11,8 @@ Tired of writing Next.js revalidate endpoint every time? Use next-reavalidate-ro
 ```js
 import { nextRevalidateRoute } from 'next-revalidate-route'
 
-export const runtime = 'edge' // optional
-
+// Send GET request to /revalidate?tags=one,two&paths=/blog/[slug],/route
+// (with Authorization header) to revalidate
 export async function GET(req: NextRequest) {
   return nextRevalidateRoute(req, 'your_secret')
 }
