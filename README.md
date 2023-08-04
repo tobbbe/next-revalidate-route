@@ -16,20 +16,20 @@ import { nextRevalidateRoute } from 'next-revalidate-route'
 export const runtime = 'edge'
 
 export async function GET(req: NextRequest) {
-  return nextRevalidateRoute(req, 'secret')
+  return nextRevalidateRoute(req, 'your_secret')
 }
 ```
 
 ## Examples
 
 ```zsh
-curl -H "Authorization: YOUR_TOKEN" https://example.com/revalidate?tags=one,two,three&paths=/about,/blog/[slug],/route
+curl -H "Authorization: your_secret" https://example.com/revalidate?tags=one,two,three&paths=/about,/blog/[slug],/route
 ```
 
 ```js
 fetch('https://example.com/revalidate?tags=one,two,three&paths=/about,/blog/[slug],/route', {
   headers: {
-    Authorization: 'YOUR_TOKEN',
+    Authorization: 'your_secret',
   },
 })
 ```
