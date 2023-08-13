@@ -1,6 +1,6 @@
 {
   "name": "next-revalidate-route",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "Helper that creates a Nextjs route handler that can be used to revalidatePath's and revalidateTag's with query parameters. Optionally protect with a secret.",
   "keywords": [
     "nextjs",
