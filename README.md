@@ -12,9 +12,21 @@ Tired of writing Next.js revalidate endpoint every time? Use next-reavalidate-ro
 import { nextRevalidateRoute } from 'next-revalidate-route'
 
 // Send GET request to /revalidate?tags=one,two&paths=/blog/[slug],/route
-// (with Authorization header) to revalidate
+
+// Protect with Authorization header
 export async function GET(req: NextRequest) {
-  return nextRevalidateRoute(req, 'your_secret')
+  return nextRevalidateRoute(req, {
+    auth: 'your_secret',
+    trustLocalhost: true,
+  })
+}
+
+// Protect with custom auth callback
+export async function GET(req: NextRequest) {
+  return nextRevalidateRoute(req, {
+    auth: async () => !!(await authorize()), // must return boolean
+    trustLocalhost: true,
+  })
 }
 ```
 

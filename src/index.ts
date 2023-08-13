@@ -1,15 +1,24 @@
 import { revalidatePath, revalidateTag } from 'next/cache'
 import { NextRequest, NextResponse } from 'next/server'
 
-export async function nextRevalidateRoute(req: NextRequest, secret?: string) {
+type NextRevalidateRouteOptions = {
+  auth?: string | (() => Promise<boolean>)
+  trustLocalhost?: boolean
+}
+
+export async function nextRevalidateRoute(req: NextRequest, options?: NextRevalidateRouteOptions) {
   if (
-    process.env.NODE_ENV !== 'development' &&
-    secret &&
-    req.headers.get('Authorization') !== secret
+    (process.env.NODE_ENV === 'development' && options?.trustLocalhost) ||
+    (typeof options?.auth === 'string' && req.headers.get('Authorization') === options?.auth) ||
+    (typeof options?.auth === 'function' && (await options?.auth()))
   ) {
-    return NextResponse.json({}, { status: 401 })
+    return revalidate(req)
   }
 
+  return NextResponse.json({}, { status: 401 })
+}
+
+function revalidate(req: NextRequest) {
   const revalidated: { param: RevalidateParam; value: string }[] = []
 
   for (const item of [
