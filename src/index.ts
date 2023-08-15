@@ -7,8 +7,11 @@ type NextRevalidateRouteOptions = {
 }
 
 export async function nextRevalidateRoute(req: NextRequest, options?: NextRevalidateRouteOptions) {
+  let trustLocalhost = options?.trustLocalhost !== false
+
   if (
-    (process.env.NODE_ENV === 'development' && options?.trustLocalhost) ||
+    !options?.auth ||
+    (process.env.NODE_ENV === 'development' && trustLocalhost) ||
     (typeof options?.auth === 'string' && req.headers.get('Authorization') === options?.auth) ||
     (typeof options?.auth === 'function' && (await options?.auth()))
   ) {
