@@ -7,7 +7,7 @@ type NextRevalidateRouteOptions = {
 }
 
 export async function nextRevalidateRoute(req: NextRequest, options?: NextRevalidateRouteOptions) {
-  let trustLocalhost = options?.trustLocalhost !== false
+  let trustLocalhost = options?.trustLocalhost === true
 
   if (
     !options?.auth ||
